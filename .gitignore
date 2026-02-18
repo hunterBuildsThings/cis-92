@@ -2,6 +2,8 @@
 # of "working" data that isn't supposed to be checked in. 
 
 # Ignore Python virtual environments of different names
-.venv/
-venv/
+venv*/ 
+.venv/ 
+*.pyc
+*.sqlite3
 
