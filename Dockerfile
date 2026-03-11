@@ -12,12 +12,12 @@ RUN useradd -d /app -M django
 COPY --chown=django:django djangotutorial /app
 
 # Set environment variables 
-ENV STUDENT_NAME="No Name" 
+ENV STUDENT_NAME="Hunter Martinez" 
 ENV SITE_NAME="www.cis-92.com" 
 ENV SECRET_KEY="fixme-12345" 
 ENV DEBUG=1 
 ENV DATA_DIR="/data" 
-ENV PORT=8080 
+ENV PORT=8000 
 ENV DJANGO_SUPERUSER_NAME="test" 
 ENV DJANGO_SUPERUSER_EMAIL="test@test.test" 
 ENV DJANGO_SUPERUSER_PASSWORD="test" 
