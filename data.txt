@@ -1,0 +1,14 @@
+1: 11 RPS, 184 mCPUs, 78.   16.7mCPUs/RPS
+2: 20.2 RPS, 317 mCPUs, 78  15.7mCPUs/RPS
+3: 29.5 RPS, 463 mCPUs, 79  15.7mCPUs/RPS
+4: 40.3 RPS, 625 mCPUs, 80  15.5mCPUs/RPS
+5: 49.8 RPS, 772 mCPUs, 80  15.5mCPUs/RPS
+6: 55.8 RPS, 897 mCPUs, 80  16.07mCPUs/RPS
+7: 50.8 RPS, 970 mCPUs, 81  19.09mCPUs/RPS
+8: 43 RPS, 974 mCPUs, 82    22.65mCPUs/RPS
+9: 39.2 RPS, 979 mCPUs, 82  24.9mCPUs/RPS
+10: 38.8 RPS, 987 mCPUs, 83 25.4mCPUs/RPS
+
+The table shows that peak performance for our 1000mCPU containers can best handle 5-6 users before plateauing.
+Best performance we that was recorded was 1 request using about 15.5mCPUs.
+The worst was at 10 users where 1 request took aabout 25.4mCPUs 
