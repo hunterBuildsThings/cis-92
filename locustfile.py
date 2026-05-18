@@ -6,7 +6,7 @@ class HelloWorldUser(HttpUser):
 
     @task
     def hello_world(self):
-        self.client.get("/admin/auth/user/")
+        self.client.get("/admin/auth/user/", headers={"Connection": "close"})
 
     def on_start(self):
         response = self.client.get('/admin/login/?next=/admin/')

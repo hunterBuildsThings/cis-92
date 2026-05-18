@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  labels:
+    function: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      function: app
+  template:
+    metadata:
+      labels:
+        function: app
+    spec:
+      containers:
+      - name: django
+        image: ghcr.io/hunterbuildsthings/cis-92@sha256:ea88b3a3d8711386fda4c96503e93e047810820cbd81ed36523e2ff399ad916b
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 1000m 
+            memory: 1024Mi
+            ephemeral-storage: 10Mi
+          limits:
+            cpu: 1000m 
+            memory: 1024Mi
+            ephemeral-storage: 10Mi
+        envFrom:
+        - configMapRef:
+            name: mysite-config
+        - secretRef:
+            name: mysite-secrets
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: host
+              value: localhost
+      securityContext:
+          fsGroup: 1000

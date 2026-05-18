@@ -10,12 +10,26 @@
 | DJANGO_SUPERUSER_EMAIL | admin@admin.com | Email of the superuser account |
 | DJANGO_SUPERUSER_PASSWORD | password | Password of the superuser account |
 
+## values-postgres.yaml
+There are default authentication credentials in the values-postgres.yaml file that should be changed before application is deployed.
+
+| Variable Name | Default Value | Description |
+| --- | --- | --- |
+| username | mysiteuser | username |
+| password | this-is-a-bad-password | password |
+| database | mysite | name of database |
+
+Additionally GKE Autopilot resource requests and limits can
+be changed from the default values for `memory`, `cpu`, and `ephemeral-storage`
+
 ## Deployment Instructions
 
 To deploy the application to your Kubernetes cluster, follow these steps:
 
 1. **Apply the files in deployment directory**: Run the following command in when in the deployment directory
    ```bash
+   helm install postgres oci://registry-1.docker.io/bitnamicharts/postgresql --values values-postgres.yaml
+
    kubectl apply -f .
    ```
 2. **Find the external IP address**: Use the following command and wait until 
@@ -31,5 +45,17 @@ To remove the application and its associated resources from the cluster, run the
 
 1. **Delete the Deployment and Services**:
    ```bash
+   helm uninstall postgres
    kubectl delete -f .
    ```
+
+
+   ## Scaling Locust Results
+
+   | Replicas | Requests per second | CPU Utilization | Memory utilization |
+   | --- | --- | --- | --- |
+   | 1 | 15.56 | 99% | 9% |
+   | 2 | 24.12 | 73.5% | 9% |
+   | 3 | 31.84 | 55.3% | 9% |
+   | 4 | 35 | 42.75% | 8.5% |
+   | 5 | 37.7 | 34.4% | 8.25% |
